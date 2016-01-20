@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Libreria</string>
+    <string name="title_activity_activity_canciones">ActivityCanciones</string>
+    <string name="title_activity_activity_editar">ActivityEditar</string>
+</resources>
