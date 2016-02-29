@@ -32,7 +32,22 @@ public class ActivityCanciones extends AppCompatActivity {
         setContentView(R.layout.activity_canciones);
         init();
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String mSelectionClause =   Contrato.TablaCancion.ID_DISCO+" = ?";
+        String [] selectionArgs = {getIntent().getExtras().getLong("id_disc")+""};
+        final Cursor cam = getContentResolver().query(uriC, null, mSelectionClause,selectionArgs,null);
 
+        adp = new AdaptadorCanciones(this,cam,buscarInterprete());
+        lv.setAdapter(adp);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                editar(cam);
+            }
+        });
+    }
     public void init(){
         lv = (ListView)findViewById(R.id.lvCan);
 
